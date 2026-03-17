@@ -1,11 +1,8 @@
-'use client'
-
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
 import './globals.css'
 import Navbar from '../components/Navbar'
 
-const inter = Inter({ subsets: ['latin'] })
+/* Using system fonts (Inter-like fallback) - avoids external Google Fonts fetch */
 
 export const metadata: Metadata = {
   title: 'Solia Documentation',
@@ -19,10 +16,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className="dark">
-      <body className={`${inter.className} bg-gray-900 text-gray-100 antialiased`}>
+      <body className="font-['Inter',ui-sans-serif,system-ui,-apple-system,san-serif] bg-gray-900 text-gray-100 antialiased">
         <Navbar />
         <main className="min-h-screen">{children}</main>
       </body>
     </html>
   )
 }
+
