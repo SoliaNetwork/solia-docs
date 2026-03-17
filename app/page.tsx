@@ -1,213 +1,103 @@
 import Link from 'next/link'
 import CodeBlock from '../components/CodeBlock'
 
+const quickLinks = [
+  {
+    href: '/intro',
+    title: 'Intro',
+    description: 'Protocol overview and positioning',
+  },
+  {
+    href: '/escrow',
+    title: 'Escrow Concepts',
+    description: 'Lifecycle, roles, and settlement paths',
+  },
+  {
+    href: '/api',
+    title: 'API Reference',
+    description: 'Create, confirm, and monitor escrows',
+  },
+  {
+    href: '/architecture',
+    title: 'Architecture',
+    description: 'System blueprint and integration model',
+  },
+]
+
 export default function Home() {
   return (
-    <div className="max-w-6xl mx-auto px-6 py-24 space-y-20">
-      <section className="text-center">
-        <h1 className="text-5xl md:text-7xl font-bold bg-gradient-to-r from-blue-400 via-purple-400 to-indigo-500 bg-clip-text text-transparent mb-6">
-          Solia Documentation
-        </h1>
-        <p className="text-xl md:text-2xl text-gray-300 max-w-2xl mx-auto leading-relaxed">
+    <div className="mx-auto max-w-6xl px-6 py-20 md:py-24 space-y-20">
+      <section className="rounded-3xl border border-slate-800 bg-slate-900/65 p-8 md:p-12 backdrop-blur-sm">
+        <p className="mb-4 inline-flex rounded-full border border-cyan-400/30 bg-cyan-400/10 px-4 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-cyan-200">
+          Solia Protocol Docs
+        </p>
+        <h1 className="max-w-4xl text-4xl font-semibold leading-tight text-white md:text-6xl">
           Non-custodial escrow and settlement infrastructure for global payments.
-        </p>
-        <p className="text-lg text-gray-400 mt-4 max-w-xl mx-auto">
-          Solia enables developers, platforms, and individuals to create trustless
-          escrow flows using stablecoins, with optional fiat settlement through
-          adapter integrations.
+        </h1>
+        <p className="mt-6 max-w-3xl text-base leading-relaxed text-slate-300 md:text-lg">
+          Solia enables developers and platforms to build trustless escrow flows with stablecoins and
+          optional local payout settlement through pluggable adapters.
         </p>
       </section>
 
-      <section className="grid md:grid-cols-2 gap-10 items-center">
-        <div>
-          <h2 className="text-4xl font-bold text-white mb-6">🚀 What is Solia?</h2>
-          <p className="text-xl text-gray-300 leading-relaxed mb-6">
-            Solia is a protocol and backend engine that powers trustless escrow
-            flows for:
+      <section className="grid gap-8 md:grid-cols-2">
+        <article className="rounded-2xl border border-slate-800 bg-slate-900/60 p-8">
+          <h2 className="mb-4 text-2xl font-semibold text-white">What Is Solia?</h2>
+          <p className="mb-5 text-slate-300">
+            Solia is a protocol and backend engine for programmable escrow agreements.
           </p>
-          <ul className="space-y-3 text-lg text-gray-300">
-            <li>• P2P trade settlement</li>
-            <li>• Freelance and service escrow</li>
-            <li>• Escrow-native payment links</li>
-            <li>• Cross-border stablecoin to fiat payouts</li>
+          <ul className="space-y-2 text-slate-300">
+            <li>P2P trade settlement</li>
+            <li>Freelance and service escrow</li>
+            <li>Escrow-native payment links</li>
+            <li>Cross-border digital-to-local payout flows</li>
           </ul>
-          <p className="mt-6 text-gray-400">
-            Unlike traditional platforms, Solia never custodies funds and
-            enforces agreements via Solana smart contracts.
+        </article>
+
+        <article className="rounded-2xl border border-slate-800 bg-slate-900/60 p-8">
+          <h2 className="mb-4 text-2xl font-semibold text-white">How It Works</h2>
+          <p className="font-mono text-sm uppercase tracking-[0.18em] text-cyan-200/90">
+            User -&gt; Escrow Creation -&gt; Funds Locked -&gt; Conditions Met -&gt; Settlement
           </p>
-        </div>
-
-        <div className="bg-gradient-to-br from-gray-800/50 to-gray-900/50 p-8 rounded-2xl border border-gray-700">
-          <div className="text-center mb-6">
-            <div className="inline-flex items-center px-4 py-2 bg-blue-500/20 border border-blue-500/30 rounded-full">
-              <span className="text-sm font-medium text-blue-300">Key Benefits</span>
-            </div>
-          </div>
-          <div className="space-y-4 text-gray-200">
-            <div className="flex items-start space-x-3">
-              <span className="text-green-400 text-xl">✓</span>
-              <span>Non-custodial escrow design</span>
-            </div>
-            <div className="flex items-start space-x-3">
-              <span className="text-green-400 text-xl">✓</span>
-              <span>Programmable settlement flows</span>
-            </div>
-            <div className="flex items-start space-x-3">
-              <span className="text-green-400 text-xl">✓</span>
-              <span>Crypto and fiat payout rails</span>
-            </div>
-          </div>
-        </div>
+          <ol className="mt-6 space-y-3 text-slate-300">
+            <li>1. Creator initializes an escrow via API.</li>
+            <li>2. Funds lock in an on-chain program vault.</li>
+            <li>3. Counterparty fulfills agreement terms.</li>
+            <li>4. Parties confirm or enter dispute path.</li>
+            <li>5. Settlement is routed to the selected destination.</li>
+          </ol>
+        </article>
       </section>
 
       <section>
-        <h2 className="text-4xl font-bold text-white mb-12 text-center">
-          ⚙️ How It Works
-        </h2>
-        <div className="max-w-4xl mx-auto space-y-8">
-          <div className="bg-gray-800/50 border border-gray-700 rounded-2xl p-8">
-            <div className="flex items-center justify-center space-x-4 text-sm text-gray-400 mb-6 uppercase tracking-wider font-mono">
-              <span>Creator</span>
-              <span>→</span>
-              <span>Escrow</span>
-              <span>→</span>
-              <span>Settlement</span>
-            </div>
-
-            <div className="grid md:grid-cols-3 gap-8 text-center">
-              <div>
-                <div className="w-20 h-20 bg-blue-500/20 border-2 border-blue-500/30 rounded-2xl mx-auto mb-4 flex items-center justify-center">
-                  <span className="text-2xl font-bold text-blue-300">1</span>
-                </div>
-                <h3 className="font-semibold text-white mb-2">Create Escrow</h3>
-                <p className="text-sm text-gray-400">
-                  Generate an escrow agreement via the API.
-                </p>
-              </div>
-
-              <div>
-                <div className="w-20 h-20 bg-purple-500/20 border-2 border-purple-500/30 rounded-2xl mx-auto mb-4 flex items-center justify-center">
-                  <span className="text-2xl font-bold text-purple-300">2</span>
-                </div>
-                <h3 className="font-semibold text-white mb-2">Funds Locked</h3>
-                <p className="text-sm text-gray-400">
-                  Assets are locked in a Solana smart contract vault.
-                </p>
-              </div>
-
-              <div>
-                <div className="w-20 h-20 bg-green-500/20 border-2 border-green-500/30 rounded-2xl mx-auto mb-4 flex items-center justify-center">
-                  <span className="text-2xl font-bold text-green-300">3</span>
-                </div>
-                <h3 className="font-semibold text-white mb-2">Settlement</h3>
-                <p className="text-sm text-gray-400">
-                  Release funds on completion or route to a dispute flow.
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <div className="grid md:grid-cols-2 gap-8">
-            <div>
-              <h3 className="text-2xl font-bold text-white mb-4">Core Flow</h3>
-              <ol className="space-y-3 text-gray-300 list-decimal list-inside">
-                <li>Creator generates escrow via API</li>
-                <li>Funds are locked in a Solana vault</li>
-                <li>Counterparty fulfills the agreement</li>
-                <li>Both parties confirm or dispute</li>
-                <li>Funds are released in crypto or fiat</li>
-              </ol>
-            </div>
-
-            <div>
-              <h3 className="text-2xl font-bold text-white mb-4">
-                Settlement Types
-              </h3>
-              <div className="space-y-4">
-                <div className="flex items-center p-4 bg-gray-800/50 rounded-xl border border-gray-700">
-                  <div className="w-3 h-3 bg-green-400 rounded-full mr-3" />
-                  <span>Crypto → direct on-chain transfer</span>
-                </div>
-                <div className="flex items-center p-4 bg-gray-800/50 rounded-xl border border-gray-700">
-                  <div className="w-3 h-3 bg-blue-400 rounded-full mr-3" />
-                  <span>Fiat → adapter-based payout rails</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="text-center">
-        <h2 className="text-3xl font-bold text-white mb-12">🔗 Quick Links</h2>
-        <div className="grid md:grid-cols-5 gap-6 max-w-6xl mx-auto">
-          <Link
-            href="/intro"
-            className="group p-8 bg-gray-800/50 border border-gray-700 rounded-2xl hover:border-blue-500/50 hover:bg-gray-800 transition-all duration-300"
-          >
-            <h3 className="text-xl font-bold text-white mb-3 group-hover:text-blue-400">
-              Intro
-            </h3>
-            <p className="text-gray-400 group-hover:text-gray-300">Get started</p>
-          </Link>
-
-          <Link
-            href="/escrow"
-            className="group p-8 bg-gray-800/50 border border-gray-700 rounded-2xl hover:border-purple-500/50 hover:bg-gray-800 transition-all duration-300"
-          >
-            <h3 className="text-xl font-bold text-white mb-3 group-hover:text-purple-400">
-              Escrow
-            </h3>
-            <p className="text-gray-400 group-hover:text-gray-300">Concepts</p>
-          </Link>
-
-          <Link
-            href="/api"
-            className="group p-8 bg-gray-800/50 border border-gray-700 rounded-2xl hover:border-green-500/50 hover:bg-gray-800 transition-all duration-300"
-          >
-            <h3 className="text-xl font-bold text-white mb-3 group-hover:text-green-400">
-              API
-            </h3>
-            <p className="text-gray-400 group-hover:text-gray-300">Reference</p>
-          </Link>
-
-          <Link
-            href="/architecture"
-            className="group p-8 bg-gray-800/50 border border-gray-700 rounded-2xl hover:border-indigo-500/50 hover:bg-gray-800 transition-all duration-300"
-          >
-            <h3 className="text-xl font-bold text-white mb-3 group-hover:text-indigo-400">
-              Architecture
-            </h3>
-            <p className="text-gray-400 group-hover:text-gray-300">Diagram</p>
-          </Link>
-
-          <Link
-            href="https://github.com/SoliaNetwork/solia-docs"
-            className="group p-8 bg-gray-800/50 border border-gray-700 rounded-2xl hover:border-gray-500/50 hover:bg-gray-800 transition-all duration-300"
-          >
-            <h3 className="text-xl font-bold text-white mb-3 group-hover:text-gray-300">
-              GitHub
-            </h3>
-            <p className="text-gray-400 group-hover:text-gray-300">Source</p>
-          </Link>
-        </div>
-      </section>
-
-      <section>
-        <h2 className="text-3xl font-bold text-white mb-8 text-center">
-          🚀 Quick Start
-        </h2>
-        <div className="max-w-3xl mx-auto space-y-4">
+        <h2 className="mb-6 text-2xl font-semibold text-white">Quick Start</h2>
+        <div className="space-y-3">
           <CodeBlock language="http">{`POST /v1/escrow/create`}</CodeBlock>
           <CodeBlock language="json">{`{
   "amount": 100,
   "token": "USDC",
   "recipient": "wallet_address",
   "settlement": {
-    "type": "FIAT",
+    "type": "LOCAL_PAYOUT",
     "currency": "GBP"
   }
 }`}</CodeBlock>
+        </div>
+      </section>
+
+      <section>
+        <h2 className="mb-6 text-2xl font-semibold text-white">Documentation Sections</h2>
+        <div className="grid gap-5 md:grid-cols-2">
+          {quickLinks.map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              className="group rounded-2xl border border-slate-800 bg-slate-900/50 p-6 transition hover:border-cyan-400/35 hover:bg-slate-900"
+            >
+              <h3 className="text-xl font-medium text-white transition group-hover:text-cyan-200">{link.title}</h3>
+              <p className="mt-2 text-slate-400">{link.description}</p>
+            </Link>
+          ))}
         </div>
       </section>
     </div>

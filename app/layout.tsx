@@ -2,8 +2,6 @@ import type { Metadata } from 'next'
 import './globals.css'
 import Navbar from '../components/Navbar'
 
-/* Using system fonts (Inter-like fallback) - avoids external Google Fonts fetch */
-
 export const metadata: Metadata = {
   title: 'Solia Documentation',
   description: 'Non-custodial escrow and settlement infrastructure for global payments.',
@@ -15,12 +13,12 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className="dark">
-      <body className="font-['Inter',ui-sans-serif,system-ui,-apple-system,san-serif] bg-gray-900 text-gray-100 antialiased">
+    <html lang="en">
+      <body className="min-h-screen bg-slate-950 text-slate-100 antialiased [font-family:'Sora','Avenir_Next','Segoe_UI',ui-sans-serif,system-ui]">
+        <div className="pointer-events-none fixed inset-0 -z-10 bg-[radial-gradient(60rem_35rem_at_20%_-10%,rgba(34,211,238,0.15),transparent),radial-gradient(45rem_30rem_at_85%_10%,rgba(56,189,248,0.1),transparent)]" />
         <Navbar />
-        <main className="min-h-screen">{children}</main>
+        <main>{children}</main>
       </body>
     </html>
   )
 }
-

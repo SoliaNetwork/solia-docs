@@ -1,7 +1,7 @@
 # Architecture Overview
 
 ```
-Client → API → Solana Program → Events → Adapter → Fiat Rails
+Client -> API -> Solana Program -> Events -> Adapter -> Settlement Rails
 ```
 
 ## Layers
@@ -9,8 +9,8 @@ Client → API → Solana Program → Events → Adapter → Fiat Rails
 2. **API Layer**: api.solia.network
 3. **Smart Contract**: solia_escrow (PDA vaults)
 4. **Event Listener**: Syncs backend state
-5. **Adapters**: Wise, Bridge
-6. **Payment Rails**: Banks/crypto off-ramps
+5. **Adapter Layer**: Provider-agnostic connectors
+6. **Settlement Rails**: Bank payout channels, regional rails, digital asset rails
 
 ## Networks
 - Mainnet: Production
