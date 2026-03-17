@@ -3,8 +3,41 @@ import './globals.css'
 import Navbar from '../components/Navbar'
 
 export const metadata: Metadata = {
-  title: 'Solia Documentation',
+  metadataBase: new URL('https://docs.solia.network'),
+  title: {
+    default: 'Solia Documentation',
+    template: '%s | Solia Docs',
+  },
   description: 'Non-custodial escrow and settlement infrastructure for global payments.',
+  alternates: {
+    canonical: '/',
+  },
+  openGraph: {
+    title: 'Solia Documentation',
+    description: 'Non-custodial escrow and settlement infrastructure for global payments.',
+    url: 'https://docs.solia.network',
+    siteName: 'Solia Documentation',
+    type: 'website',
+    images: [
+      {
+        url: '/og-image.png',
+        width: 1200,
+        height: 630,
+        alt: 'Solia Documentation Preview',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Solia Documentation',
+    description: 'Non-custodial escrow and settlement infrastructure for global payments.',
+    images: ['/og-image.png'],
+  },
+  icons: {
+    icon: '/icon.png',
+    shortcut: '/icon.png',
+    apple: '/icon.png',
+  },
 }
 
 export default function RootLayout({
