@@ -1,109 +1,56 @@
+const states = ['Pending', 'Funded', 'Active', 'Confirmed', 'Disputed', 'Settled']
+
 export default function Escrow() {
   return (
-    <div className="max-w-5xl mx-auto px-6 py-24 space-y-16">
-      <div className="text-center">
-        <h1 className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-purple-400 via-pink-400 to-rose-400 bg-clip-text text-transparent mb-6">
-          Escrow Concepts
-        </h1>
-        <p className="text-xl text-gray-300 max-w-2xl mx-auto">
-          Core primitives powering trustless agreements.
+    <div className="mx-auto max-w-5xl px-6 py-20 md:py-24 space-y-14">
+      <header className="rounded-3xl border border-slate-800 bg-slate-900/65 p-8 md:p-12">
+        <h1 className="text-4xl font-semibold text-white md:text-6xl">Escrow Concepts</h1>
+        <p className="mt-4 max-w-2xl text-slate-300 md:text-lg">
+          Core primitives for building trustless agreements with deterministic settlement paths.
         </p>
-      </div>
+      </header>
 
-      <section className="grid md:grid-cols-2 gap-12">
-        <div>
-          <h2 className="text-3xl font-bold text-white mb-8">👥 Roles</h2>
-          <div className="space-y-6">
-            <div className="p-6 bg-gradient-to-r from-blue-500/10 to-indigo-500/10 border border-blue-500/30 rounded-2xl">
-              <h3 className="text-xl font-bold text-white mb-3 flex items-center">
-                <span className="w-3 h-3 bg-blue-400 rounded-full mr-3"></span>
-                Creator
-              </h3>
-              <p className="text-gray-300">Initiates escrow and defines settlement conditions.</p>
-            </div>
-            <div className="p-6 bg-gradient-to-r from-emerald-500/10 to-teal-500/10 border border-emerald-500/30 rounded-2xl">
-              <h3 className="text-xl font-bold text-white mb-3 flex items-center">
-                <span className="w-3 h-3 bg-emerald-400 rounded-full mr-3"></span>
-                Depositor
-              </h3>
-              <p className="text-gray-300">Funds the escrow (can be creator).</p>
-            </div>
-            <div className="p-6 bg-gradient-to-r from-orange-500/10 to-red-500/10 border border-orange-500/30 rounded-2xl">
-              <h3 className="text-xl font-bold text-white mb-3 flex items-center">
-                <span className="w-3 h-3 bg-orange-400 rounded-full mr-3"></span>
-                Recipient
-              </h3>
-              <p className="text-gray-300">Receives funds upon confirmation.</p>
-            </div>
+      <section className="grid gap-8 md:grid-cols-2">
+        <article className="rounded-2xl border border-slate-800 bg-slate-900/55 p-7">
+          <h2 className="mb-5 text-2xl font-semibold text-white">Roles</h2>
+          <div className="space-y-4 text-slate-300">
+            <p><span className="font-semibold text-white">Creator:</span> Initiates escrow and defines release conditions.</p>
+            <p><span className="font-semibold text-white">Depositor:</span> Funds the escrow vault.</p>
+            <p><span className="font-semibold text-white">Recipient:</span> Receives payout after confirmation or resolution.</p>
           </div>
-        </div>
+        </article>
 
-        <div>
-          <h2 className="text-3xl font-bold text-white mb-8">📋 Escrow Types</h2>
-          <div className="space-y-4">
-            <div className="flex items-start p-6 bg-gray-800/50 border border-gray-700 rounded-xl hover:border-purple-500/50 transition-all">
-              <div className="w-12 h-12 bg-purple-500/20 border-2 border-purple-500/40 rounded-xl flex items-center justify-center shrink-0 mt-1 mr-4">
-                <span className="text-purple-400 font-mono text-sm">P2P</span>
-              </div>
-              <div>
-                <h4 className="font-semibold text-white">Private Escrow</h4>
-                <p className="text-gray-400 text-sm">Payment links, direct deals</p>
-              </div>
-            </div>
-            <div className="flex items-start p-6 bg-gray-800/50 border border-gray-700 rounded-xl hover:border-green-500/50 transition-all">
-              <div className="w-12 h-12 bg-green-500/20 border-2 border-green-500/40 rounded-xl flex items-center justify-center shrink-0 mt-1 mr-4">
-                <span className="text-green-400 font-mono text-sm">MP</span>
-              </div>
-              <div>
-                <h4 className="font-semibold text-white">Marketplace</h4>
-                <p className="text-gray-400 text-sm">Platform-integrated trades</p>
-              </div>
-            </div>
-            <div className="flex items-start p-6 bg-gray-800/50 border border-gray-700 rounded-xl hover:border-blue-500/50 transition-all">
-              <div className="w-12 h-12 bg-blue-500/20 border-2 border-blue-500/40 rounded-xl flex items-center justify-center shrink-0 mt-1 mr-4">
-                <span className="text-blue-400 font-mono text-sm">SVC</span>
-              </div>
-              <div>
-                <h4 className="font-semibold text-white">Service</h4>
-                <p className="text-gray-400 text-sm">Milestone payments</p>
-              </div>
-            </div>
+        <article className="rounded-2xl border border-slate-800 bg-slate-900/55 p-7">
+          <h2 className="mb-5 text-2xl font-semibold text-white">Escrow Types</h2>
+          <div className="space-y-4 text-slate-300">
+            <p><span className="font-semibold text-white">Private:</span> Direct payment links and one-off agreements.</p>
+            <p><span className="font-semibold text-white">Marketplace:</span> Multi-party platform transactions.</p>
+            <p><span className="font-semibold text-white">Service:</span> Milestone-based delivery and release.</p>
           </div>
+        </article>
+      </section>
+
+      <section className="rounded-3xl border border-slate-800 bg-slate-900/55 p-8">
+        <h2 className="mb-6 text-2xl font-semibold text-white">Lifecycle States</h2>
+        <div className="grid gap-3 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6">
+          {states.map((state) => (
+            <div key={state} className="rounded-xl border border-slate-700 bg-slate-950/70 px-4 py-3 text-center text-sm font-medium text-slate-200">
+              {state}
+            </div>
+          ))}
         </div>
       </section>
 
-      <section>
-        <h2 className="text-3xl font-bold text-white mb-12">🔄 Lifecycle States</h2>
-        <div className="max-w-4xl mx-auto">
-          <div className="grid md:grid-cols-6 gap-4 bg-gray-900/50 border border-gray-700 rounded-3xl p-8">
-            {['Pending', 'Funded', 'Active', 'Confirmed', 'Disputed', 'Settled'].map((state, i) => (
-              <div key={state} className={`p-4 rounded-xl text-center transition-all ${
-                i === 2 ? 'bg-emerald-500/20 border-emerald-500/40' : 
-                i === 3 ? 'bg-blue-500/20 border-blue-500/40' :
-                i === 5 ? 'bg-green-500/20 border-green-500/40' : 
-                'bg-gray-800/50 border-gray-700'
-              }`}>
-                <div className="text-sm font-mono font-semibold text-white">{state}</div>
-              </div>
-            ))}
+      <section className="rounded-3xl border border-slate-800 bg-slate-900/55 p-8">
+        <h2 className="mb-5 text-2xl font-semibold text-white">Settlement Types</h2>
+        <div className="grid gap-4 md:grid-cols-2">
+          <div className="rounded-xl border border-emerald-400/30 bg-emerald-400/10 p-5">
+            <h3 className="text-lg font-medium text-emerald-100">Crypto Settlement</h3>
+            <p className="mt-2 text-slate-200">Direct on-chain transfer to recipient wallet.</p>
           </div>
-        </div>
-      </section>
-
-      <section className="bg-gradient-to-br from-gray-900/50 to-black/30 border border-gray-700/50 rounded-3xl p-12">
-        <h2 className="text-3xl font-bold text-white mb-8 text-center">💡 Pro Tips</h2>
-        <div className="grid md:grid-cols-3 gap-6">
-          <div className="p-6 rounded-2xl border border-gray-700 hover:border-purple-500/50 bg-gray-800/30">
-            <h4 className="font-semibold text-white mb-3">TTL Protection</h4>
-            <p className="text-gray-400 text-sm">Set time-to-live to auto-cancel stale escrows.</p>
-          </div>
-          <div className="p-6 rounded-2xl border border-gray-700 hover:border-emerald-500/50 bg-gray-800/30">
-            <h4 className="font-semibold text-white mb-3">Batch Funding</h4>
-            <p className="text-gray-400 text-sm">Multiple escrows from single vault balance.</p>
-          </div>
-          <div className="p-6 rounded-2xl border border-gray-700 hover:border-blue-500/50 bg-gray-800/30">
-            <h4 className="font-semibold text-white mb-3">Adapter Chaining</h4>
-            <p className="text-gray-400 text-sm">Crypto → Stablecoin → Fiat flows.</p>
+          <div className="rounded-xl border border-cyan-400/30 bg-cyan-400/10 p-5">
+            <h3 className="text-lg font-medium text-cyan-100">Local Payout Settlement</h3>
+            <p className="mt-2 text-slate-200">Adapter-routed transfer into regional payout rails.</p>
           </div>
         </div>
       </section>

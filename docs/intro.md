@@ -6,7 +6,7 @@ Solia is non-custodial escrow and settlement infrastructure for global payments.
 
 **Key Features:**
 - Trustless escrow flows using stablecoins
-- Optional fiat settlement via adapters
+- Optional local payout settlement via adapters
 - Solana smart contracts (no custody)
 - Programmable settlement logic
 

@@ -1,84 +1,51 @@
+import CodeBlock from '../../components/CodeBlock'
+
 export default function API() {
   return (
-    <div className="max-w-5xl mx-auto px-6 py-24 space-y-16">
-      <div className="text-center">
-        <h1 className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-emerald-400 via-teal-400 to-green-400 bg-clip-text text-transparent mb-6">
-          API Reference
-        </h1>
-        <p className="text-xl text-gray-300 max-w-2xl mx-auto">
-          Simple REST API for escrow lifecycle management.
+    <div className="mx-auto max-w-5xl px-6 py-20 md:py-24 space-y-14">
+      <header className="rounded-3xl border border-slate-800 bg-slate-900/65 p-8 md:p-12">
+        <h1 className="text-4xl font-semibold text-white md:text-6xl">API Reference</h1>
+        <p className="mt-4 max-w-2xl text-slate-300 md:text-lg">
+          REST endpoints for escrow creation, confirmation, and settlement status.
         </p>
-      </div>
+      </header>
 
-      <section>
-        <h2 className="text-3xl font-bold text-white mb-8 flex items-center">
-          <span className="w-2 h-2 bg-green-400 rounded-full mr-3"></span>
-          Create Escrow
-        </h2>
-        <div className="grid md:grid-cols-2 gap-12 items-start">
-          <div>
-            <CodeBlock language="bash">
-POST /v1/escrow/create
-            </CodeBlock>
-            <CodeBlock language="json">
-{
+      <section className="rounded-2xl border border-slate-800 bg-slate-900/55 p-8">
+        <h2 className="mb-5 text-2xl font-semibold text-white">Create Escrow</h2>
+        <CodeBlock language="http">{`POST /v1/escrow/create`}</CodeBlock>
+        <CodeBlock language="json">{`{
   "amount": 100,
   "token": "USDC",
   "recipient": "wallet_address",
-  "creator": "wallet_address", 
+  "creator": "wallet_address",
   "settlement": {
-    "type": "FIAT",
-    "currency": "GBP",
-    "adapter": "wise"
+    "type": "LOCAL_PAYOUT",
+    "currency": "GBP"
   },
   "ttl": 86400
-}
-            </CodeBlock>
-          </div>
-          <div className="space-y-4 text-gray-300">
-            <p>Creates a new private escrow with programmable settlement.</p>
-            <div className="grid grid-cols-2 gap-4 text-sm">
-              <div><span className="font-mono text-gray-400">amount</span><br/><span className="text-xs text-gray-500">number</span></div>
-              <div><span className="font-mono text-gray-400">token</span><br/><span className="text-xs text-gray-500">USDC/USDT</span></div>
-              <div><span className="font-mono text-gray-400">ttl</span><br/><span className="text-xs text-gray-500">seconds</span></div>
-            </div>
-          </div>
-        </div>
+}`}</CodeBlock>
       </section>
 
-      <section>
-        <h2 className="text-3xl font-bold text-white mb-8 flex items-center">
-          <span className="w-2 h-2 bg-blue-400 rounded-full mr-3"></span>
-          Confirm Escrow
-        </h2>
-        <CodeBlock language="bash">
-POST /v1/escrow/:id/confirm
-        </CodeBlock>
-        <CodeBlock language="json">
-{
+      <section className="rounded-2xl border border-slate-800 bg-slate-900/55 p-8">
+        <h2 className="mb-5 text-2xl font-semibold text-white">Confirm Escrow</h2>
+        <CodeBlock language="http">{`POST /v1/escrow/:id/confirm`}</CodeBlock>
+        <CodeBlock language="json">{`{
   "signature": "base58_signature"
-}
-        </CodeBlock>
+}`}</CodeBlock>
       </section>
 
-      <section className="bg-gray-900/50 border border-gray-700 rounded-3xl p-12">
-        <h2 className="text-3xl font-bold text-white mb-12 text-center">📋 Response Format</h2>
-        <CodeBlock language="json">
-{
+      <section className="rounded-2xl border border-slate-800 bg-slate-900/55 p-8">
+        <h2 className="mb-5 text-2xl font-semibold text-white">Response Format</h2>
+        <CodeBlock language="json">{`{
   "escrow_id": "abc123",
   "status": "active",
   "amount": 100,
   "token": "USDC",
-  "creator": "ETH1...",
-  "recipient": "ETH2...",
+  "creator": "wallet_1",
+  "recipient": "wallet_2",
   "program_id": "Escrow9...",
-  "instructions": [
-    "fund",
-    "confirm", 
-    "settle"
-  ]
-}
-        </CodeBlock>
+  "instructions": ["fund", "confirm", "settle"]
+}`}</CodeBlock>
       </section>
     </div>
   )
